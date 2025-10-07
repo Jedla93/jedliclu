@@ -1,174 +1,215 @@
 <!DOCTYPE html>
 <html lang="cs">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Web – Technologie bez hranic</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0d47a1;
-            --secondary: #1976d2;
-            --accent: #64b5f6;
-            --light: #f4f4f4;
-            --dark: #222;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NeonTech – Budoucnost IT</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --neon-blue: #00bfff;
+      --neon-purple: #8a2be2;
+      --text-color: #e6f1ff;
+      --glass-blur: 10px;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
 
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-        }
+    header {
+      height: 100vh;
+      background: radial-gradient(ellipse at top, #0d1b2a, #000);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
 
-        header h1 {
-            font-size: 3rem;
-        }
+    header h1 {
+      font-size: 4rem;
+      color: var(--neon-blue);
+      text-shadow: 0 0 15px var(--neon-blue);
+      animation: pulse 3s infinite;
+    }
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: var(--secondary);
-        }
+    header p {
+      font-size: 1.5rem;
+      color: #aaa;
+      margin-top: 10px;
+    }
 
-        nav a {
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(var(--glass-blur));
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      z-index: 10;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
 
-        nav a:hover {
-            background-color: var(--primary);
-        }
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: bold;
+      position: relative;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+    nav a::after {
+      content: "";
+      display: block;
+      width: 0;
+      height: 2px;
+      background: var(--neon-blue);
+      transition: width 0.3s;
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+    }
 
-        section {
-            margin-bottom: 60px;
-        }
+    nav a:hover::after {
+      width: 100%;
+    }
 
-        section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
+    section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-        ul.services {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            list-style: none;
-        }
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      color: var(--neon-purple);
+      text-shadow: 0 0 10px var(--neon-purple);
+    }
 
-        ul.services li {
-            background: white;
-            padding: 20px;
-            border-left: 5px solid var(--accent);
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
 
-        .contact {
-            background-color: white;
-            padding: 30px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      width: 300px;
+      border-radius: 15px;
+      backdrop-filter: blur(var(--glass-blur));
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
 
-        footer {
-            background-color: var(--primary);
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 0 20px var(--neon-blue);
+    }
 
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
+    .contact {
+      text-align: center;
+    }
 
-            nav {
-                flex-direction: column;
-            }
+    .contact a {
+      color: var(--neon-blue);
+      text-decoration: none;
+      font-size: 1.2rem;
+    }
 
-            nav a {
-                padding: 10px;
-            }
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        text-shadow: 0 0 15px var(--neon-blue);
+      }
+      50% {
+        text-shadow: 0 0 30px var(--neon-blue);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>IT Web</h1>
-        <p>Technologie bez hranic – Váš IT partner pro digitální budoucnost</p>
-    </header>
+  <nav>
+    <a href="#about">O nás</a>
+    <a href="#services">Služby</a>
+    <a href="#contact">Kontakt</a>
+  </nav>
 
-    <nav>
-        <a href="#onas">O nás</a>
-        <a href="#sluzby">Služby</a>
-        <a href="#kontakt">Kontakt</a>
-    </nav>
+  <header>
+    <h1>NeonTech</h1>
+    <p>Budujeme digitální budoucnost</p>
+  </header>
 
-    <div class="container">
-        <section id="onas">
-            <h2>O nás</h2>
-            <p>Jsme inovativní IT společnost zaměřená na poskytování špičkových digitálních řešení. Naším cílem je pomáhat firmám i jednotlivcům uspět ve světě technologií. Spojujeme kreativitu, technologie a zkušenosti.</p>
-        </section>
+  <section id="about">
+    <h2>O nás</h2>
+    <p>
+      NeonTech je technologická společnost zaměřená na vývoj AI, blockchainových řešení a futuristických webových platforem. Naším cílem je vytvářet technologie, které mění svět.
+    </p>
+  </section>
 
-        <section id="sluzby">
-            <h2>Naše služby</h2>
-            <ul class="services">
-                <li>
-                    <h3>Webové stránky a aplikace</h3>
-                    <p>Vytváříme moderní, rychlé a responzivní weby i aplikace na míru.</p>
-                </li>
-                <li>
-                    <h3>IT poradenství</h3>
-                    <p>Pomáháme s výběrem technologií, cloudem, bezpečností i digitalizací procesů.</p>
-                </li>
-                <li>
-                    <h3>Správa sítí a serverů</h3>
-                    <p>Zajistíme bezpečný a stabilní chod vaší IT infrastruktury 24/7.</p>
-                </li>
-                <li>
-                    <h3>Kybernetická bezpečnost</h3>
-                    <p>Chráníme vaše data před hrozbami pomocí moderních bezpečnostních opatření.</p>
-                </li>
-            </ul>
-        </section>
-
-        <section id="kontakt">
-            <h2>Kontaktujte nás</h2>
-            <div class="contact">
-                <p>Máte dotaz, nebo chcete spolupracovat? Rádi vás uslyšíme.</p>
-                <p><strong>Email:</strong> <a href="mailto:info@itweb.cz">info@itweb.cz</a></p>
-                <p><strong>Telefon:</strong> +420 123 456 789</p>
-                <p><strong>Adresa:</strong> Technologická 10, Praha</p>
-            </div>
-        </section>
+  <section id="services">
+    <h2>Služby</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Umělá inteligence</h3>
+        <p>Vývoj AI modelů na míru – od predikce až po zpracování přirozeného jazyka.</p>
+      </div>
+      <div class="card">
+        <h3>Blockchain systémy</h3>
+        <p>Bezpečné a decentralizované aplikace pro finance, správu dat a identitu.</p>
+      </div>
+      <div class="card">
+        <h3>Cybersecurity</h3>
+        <p>Pokročilé zabezpečení proti hrozbám nové generace. 24/7 monitoring a ochrana.</p>
+      </div>
     </div>
+  </section>
 
-    <footer>
-        <p>&copy; 2025 IT Web. Všechna práva vyhrazena.</p>
-    </footer>
+  <section id="contact">
+    <h2>Kontakt</h2>
+    <div class="contact">
+      <p>Napiš nám: <a href="mailto:kontakt@neontech.cz">kontakt@neontech.cz</a></p>
+      <p>Telefon: +420 987 654 321</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 NeonTech. Všechna práva vyhrazena.</p>
+  </footer>
 
 </body>
 </html>
