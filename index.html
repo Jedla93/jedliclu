@@ -3,129 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Přenosná herní konzole s Raspberry Pi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <title>Stránka nenalezena | 404</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        /* Základní nastavení stránky */
+        body, html {
+            height: 100%;
             margin: 0;
-            padding: 0;
-            background-color: #121212;
-            color: #f1f1f1;
-        }
-
-        header {
-            background-color: #1f1f1f;
-            padding: 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-
-        nav {
-            background-color: #292929;
+            font-family: 'Montserrat', sans-serif; /* Primární font pro běžný text */
+            background-color: #1a1a2e; /* Tmavé pozadí pro lepší kontrast */
+            color: #e0e0e0;
             display: flex;
             justify-content: center;
-            padding: 10px 0;
-        }
-
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #00ff99;
-        }
-
-        section {
-            padding: 40px 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .gallery img {
-            width: 100%;
-            max-width: 400px;
-            margin: 10px;
-            border-radius: 8px;
-        }
-
-        footer {
+            align-items: center;
             text-align: center;
-            padding: 20px;
-            background-color: #1f1f1f;
-            color: #888;
+            overflow: hidden;
         }
+
+        .container {
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        /* --- Sekce Animované Kočky --- */
+        .cat-wrapper {
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* POZNÁMKA PRO IMPLEMENTACI:
+           Pro nejlepší efekt nahraďte tento 'div' a obrázek skutečným animovaným GIFem 
+           nebo Lottie animací chlupaté, zmatené kočky.
+           
+           Níže uvedené CSS slouží jako fallback simulace animace na statickém obrázku.
+        */
+        .cat-image {
+            width: 250px;
+            height: auto;
+            border-radius: 50%;
+            /* Placeholder obrázek chlupaté kočky (z Unsplash) */
+            content: url('https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');
+            
+            /* Aplikace animace zmatení */
+            animation: confused-look 4s ease-in-out infinite;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        /* Oči kočky (CSS trik pro "rozhlížení se") */
+        .cat-eyes {
+            position: absolute;
+            top: 45%; /* Pozice očí závisí na konkrétním obrázku */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 20px;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            /* Skryjeme je, protože placeholder obrázek už oči má, 
+               ale pokud byste měli ilustraci bez očí, toto by je vytvořilo: */
+            opacity: 0; 
+        }
+
+        .eye {
+             width: 15px; height: 15px; background: white; border-radius: 50%;
+             position: relative;
+        }
+        .pupil {
+            width: 7px; height: 7px; background: black; border-radius: 50%;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            animation: look-around 4s infinite;
+        }
+
+
+        /* --- Definice Animací --- */
+        /* Animace hlavy - jemné otáčení a náklon */
+        @keyframes confused-look {
+            0%, 100% { transform: rotate(0deg) translateX(0); }
+            25% { transform: rotate(-5deg) translateX(-10px); } /* Pohled doleva */
+            50% { transform: rotate(0deg) translateX(0); } /* Zpět na střed */
+            75% { transform: rotate(5deg) translateX(10px); } /* Pohled doprava */
+        }
+        
+         /* Animace zorniček (pokud by byly použity CSS oči) */
+        @keyframes look-around {
+            0%, 100% { transform: translate(-50%, -50%); }
+            25% { transform: translate(-90%, -50%); }
+            50% { transform: translate(-50%, -60%); }
+            75% { transform: translate(-10%, -50%); }
+        }
+
+
+        /* --- Typografie a Obsah --- */
+        .error-code {
+            /* Použití zajímavého "glitch" fontu */
+            font-family: 'Rubik Glitch', cursive;
+            font-size: 8rem;
+            margin: 0;
+            line-height: 1;
+            color: #ff6b6b; /* Výrazná barva pro chybu */
+            text-shadow: 4px 4px 0px #4ecdc4; /* 3D efekt */
+        }
+
+        .error-heading {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .error-text {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            color: #b0b0b0;
+        }
+
+        /* --- Tlačítko --- */
+        .home-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: #4ecdc4;
+            color: #1a1a2e;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.4);
+        }
+
+        .home-button:hover {
+            background-color: #ff6b6b;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+        }
+
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Přenosná herní konzole s Raspberry Pi</h1>
-        <p>DIY projekt retro herní konzole, kterou si můžeš vzít kamkoliv</p>
-    </header>
+    <div class="container">
+        <div class="cat-wrapper">
+            <img class="cat-image" alt="Zmatená chlupatá kočka">
+            </div>
 
-    <nav>
-        <a href="#uvod">Úvod</a>
-        <a href="#funkce">Funkce</a>
-        <a href="#hardware">Použitý hardware</a>
-        <a href="#galerie">Galerie</a>
-        <a href="#kontakt">Kontakt</a>
-    </nav>
-
-    <section id="uvod">
-        <h2>O projektu</h2>
-        <p>Tato přenosná herní konzole je postavena na základu Raspberry Pi a umožňuje hrát klasické retro hry kdekoli a kdykoli. Díky vestavěnému displeji, ovládacím tlačítkům a baterii je plně mobilní a nezávislá na externím napájení.</p>
-    </section>
-
-    <section id="funkce">
-        <h2>Hlavní funkce</h2>
-        <ul>
-            <li>Emulace retro herních systémů (NES, SNES, Game Boy, Sega, atd.)</li>
-            <li>3.5" LCD displej</li>
-            <li>Vestavěné ovládací prvky (D-pad, tlačítka A/B/X/Y, Start, Select)</li>
-            <li>Napájení přes dobíjecí Li-ion baterii</li>
-            <li>Software: RetroPie / EmulationStation</li>
-        </ul>
-    </section>
-
-    <section id="hardware">
-        <h2>Použitý hardware</h2>
-        <ul>
-            <li>Raspberry Pi 4 Model B</li>
-            <li>3.5" TFT LCD displej s HDMI vstupem</li>
-            <li>Gamepad modul (nebo vlastní tlačítka + GPIO)</li>
-            <li>PowerBoost 1000C (nabíjení + napájení z baterie)</li>
-            <li>Li-ion 3.7V 2500mAh baterie</li>
-            <li>3D tištěný obal</li>
-            <li>MicroSD karta (16 GB nebo více)</li>
-        </ul>
-    </section>
-
-    <section id="galerie">
-        <h2>Fotogalerie</h2>
-        <div class="gallery">
-            <img src="images/konzole1.jpg" alt="Konzole - přední pohled">
-            <img src="images/konzole2.jpg" alt="Konzole - ze strany">
-            <img src="images/konzole3.jpg" alt="Vnitřní zapojení">
-        </div>
-    </section>
-
-    <section id="kontakt">
-        <h2>Kontakt</h2>
-        <p>Máte dotaz nebo se chcete podělit o svůj vlastní projekt? Kontaktujte mě na:</p>
-        <p><a href="mailto:moje@email.cz" style="color:#00ff99;">moje@email.cz</a></p>
-    </section>
-
-    <footer>
-        <p>© 2025 Přenosná herní konzole | Vytvořeno s ❤️ a Raspberry Pi</p>
-    </footer>
+        <h1 class="error-code">404</h1>
+        
+        <h2 class="error-heading">Jejda! Tady nic není.</h2>
+        
+        <p class="error-text">
+            Vypadá to, že jsme se ztratili. Stejně jako tahle chlupatá kočka, 
+            ani my netušíme, kam se tahle stránka zatoulala.
+        </p>
+        
+        <a href="/" class="home-button">Zpět do bezpečí domova</a>
+    </div>
 
 </body>
 </html>
