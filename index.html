@@ -13,104 +13,68 @@
         body, html {
             height: 100%;
             margin: 0;
-            font-family: 'Montserrat', sans-serif; /* Primární font pro běžný text */
-            background-color: #1a1a2e; /* Tmavé pozadí pro lepší kontrast */
-            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
+            
+            /* --- KLÍČOVÉ NASTAVENÍ POZADÍ --- */
+            /* ZDE ZMĚŇTE BARVU! 
+               Aby video splynulo se stránkou, nastavte tuto barvu přesně 
+               podle barvy pozadí vašeho videa. Použijte "kapátko" na vašem videu.
+               Jako příklad je zde nastavena černá (#000000).
+            */
+            background-color: #000000; 
+            
+            /* Barva textu - pokud máte světlé video, změňte na tmavou (např. #333) */
+            color: #e0e0e0; 
+            
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         .container {
             padding: 2rem;
-            max-width: 600px;
+            max-width: 700px; /* Zvětšeno kvůli videu */
+            width: 90%;
         }
 
-        /* --- Sekce Animované Kočky --- */
-        .cat-wrapper {
+        /* --- Sekce Videa --- */
+        .video-container {
             margin-bottom: 2rem;
             position: relative;
-            display: inline-block;
-        }
-
-        /* POZNÁMKA PRO IMPLEMENTACI:
-           Pro nejlepší efekt nahraďte tento 'div' a obrázek skutečným animovaným GIFem 
-           nebo Lottie animací chlupaté, zmatené kočky.
-           
-           Níže uvedené CSS slouží jako fallback simulace animace na statickém obrázku.
-        */
-        .cat-image {
-            width: 250px;
-            height: auto;
-            border-radius: 50%;
-            /* Placeholder obrázek chlupaté kočky (z Unsplash) */
-            content: url('https://images.unsplash.com/photo-1592194996308-7b43878e84a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80');
-            
-            /* Aplikace animace zmatení */
-            animation: confused-look 4s ease-in-out infinite;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        /* Oči kočky (CSS trik pro "rozhlížení se") */
-        .cat-eyes {
-            position: absolute;
-            top: 45%; /* Pozice očí závisí na konkrétním obrázku */
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80px;
-            height: 20px;
-            z-index: 2;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
-            /* Skryjeme je, protože placeholder obrázek už oči má, 
-               ale pokud byste měli ilustraci bez očí, toto by je vytvořilo: */
-            opacity: 0; 
+            justify-content: center;
         }
 
-        .eye {
-             width: 15px; height: 15px; background: white; border-radius: 50%;
-             position: relative;
-        }
-        .pupil {
-            width: 7px; height: 7px; background: black; border-radius: 50%;
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            animation: look-around 4s infinite;
-        }
-
-
-        /* --- Definice Animací --- */
-        /* Animace hlavy - jemné otáčení a náklon */
-        @keyframes confused-look {
-            0%, 100% { transform: rotate(0deg) translateX(0); }
-            25% { transform: rotate(-5deg) translateX(-10px); } /* Pohled doleva */
-            50% { transform: rotate(0deg) translateX(0); } /* Zpět na střed */
-            75% { transform: rotate(5deg) translateX(10px); } /* Pohled doprava */
-        }
-        
-         /* Animace zorniček (pokud by byly použity CSS oči) */
-        @keyframes look-around {
-            0%, 100% { transform: translate(-50%, -50%); }
-            25% { transform: translate(-90%, -50%); }
-            50% { transform: translate(-50%, -60%); }
-            75% { transform: translate(-10%, -50%); }
+        .error-video {
+            max-width: 100%;
+            height: auto;
+            /* Volitelné: zaoblené rohy videa, pokud to vypadá lépe */
+            border-radius: 20px;
+            /* Jemný stín pro oddělení od pozadí, pokud barva není 100% shodná */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            
+            /* Důležité: odstraní případný defaultní okraj videa */
+            display: block;
+            outline: none;
+            border: none;
         }
 
-
-        /* --- Typografie a Obsah --- */
+        /* --- Typografie a Obsah (stejné jako předtím) --- */
         .error-code {
-            /* Použití zajímavého "glitch" fontu */
             font-family: 'Rubik Glitch', cursive;
-            font-size: 8rem;
+            /* Velikost písma se přizpůsobí šířce okna (responzivní) */
+            font-size: clamp(5rem, 15vw, 8rem);
             margin: 0;
             line-height: 1;
-            color: #ff6b6b; /* Výrazná barva pro chybu */
-            text-shadow: 4px 4px 0px #4ecdc4; /* 3D efekt */
+            color: #ff6b6b;
+            text-shadow: 3px 3px 0px #4ecdc4;
         }
 
         .error-heading {
-            font-size: 2rem;
+            font-size: clamp(1.5rem, 4vw, 2rem);
             font-weight: 600;
             margin-top: 1rem;
         }
@@ -118,7 +82,11 @@
         .error-text {
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
-            color: #b0b0b0;
+            /* Barva doplňkového textu, mírně tlumená */
+            color: rgba(224, 224, 224, 0.8);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* --- Tlačítko --- */
@@ -140,23 +108,31 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
         }
+        
+        /* Úprava pro mobilní zařízení */
+        @media (max-width: 480px) {
+            .container { padding: 1rem; }
+            .home-button { width: 80%; padding: 0.8rem 1rem; }
+        }
 
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="cat-wrapper">
-            <img class="cat-image" alt="Zmatená chlupatá kočka">
-            </div>
+        <div class="video-container">
+            <video class="error-video" autoplay loop muted playsinline>
+                <source src="cesta/k/vasemu/videu.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje video tag.
+            </video>
+        </div>
 
         <h1 class="error-code">404</h1>
         
         <h2 class="error-heading">Jejda! Tady nic není.</h2>
         
         <p class="error-text">
-            Vypadá to, že jsme se ztratili. Stejně jako tahle chlupatá kočička, 
-            ani my netušíme, kam se tahle stránka zatoulala.
+            Vypadá to, že jsme se ztratili. Stejně jako tahle chlupatá kočička, ani my netušíme, kam se tahle stránka zatoulala.
         </p>
         
         <a href="/" class="home-button">Zpět do bezpečí domova</a>
